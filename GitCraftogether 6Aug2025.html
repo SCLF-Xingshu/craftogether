@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ct.slfy.com || Online collab Scratch projects</title>
+  <link rel="icon" href="https://i.postimg.cc/0543tdDP/2024-06-19-0r5-Kleki.png" />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito&family=Outfit&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <nav>
+      <img class="logo" src="https://i.postimg.cc/0543tdDP/2024-06-19-0r5-Kleki.png" alt="Craftogether Logo" />
+      <ul class="nav-links" role="list">
+        <li><a href="#join">Join Project</a></li>
+        <li><a href="#create">Create Project</a></li>
+        <li><a href="#howto">How To</a></li>
+        <li><a href="#features">Features</a></li>
+      </ul>
+      <input
+        class="search"
+        type="search"
+        id="search-project"
+        name="search-project"
+        placeholder="Search Projects"
+        aria-label="Search Projects"
+      />
+    </nav>
+  </header>
+
+  <main>
+    <section id="intro">
+      <h1>Welcome to Craftogether</h1>
+      <p><mark class="wct">ct.slfy.com</mark> is a web-based tool for creating, collaborating, and sharing Scratch projects with your friends, family, or classmates.</p>
+      <img
+        class="fullwidthhome1"
+        src="https://i.postimg.cc/nhSLdQ7y/CTHome-Png-Icon-Home-2.png"
+        alt="Craftogether interface preview"
+        loading="lazy"
+      />
+    </section>
+
+    <section id="join">
+      <h2>Join a Project</h2>
+      <p>To join an existing project, enter the project code and start collaborating instantly.</p>
+      <button class="btn btn-join" type="button" onclick="alert('Join Project clicked!')">Join</button>
+    </section>
+
+    <section id="create">
+      <h2>Create a Project</h2>
+      <p>Create your own Scratch project and invite others to work together.</p>
+      <button class="btn btn-create" type="button" onclick="alert('Create Project clicked!')">Create</button>
+    </section>
+
+    <section id="howto">
+      <h2>How To</h2>
+      <h3>How to join a project</h3>
+      <p>Enter the project code in the 'Join Project' section and click 'Join'.</p>
+      <h3>How to create a project</h3>
+      <p>Click on the 'Create Project' button to start a new Scratch project.</p>
+    </section>
+
+    <section id="features">
+      <h2>Features</h2>
+      <div class="features">
+        <article class="feature" tabindex="0" role="region" aria-label="Real-time Collaboration">
+          <h3>Real-time Collaboration</h3>
+          <p>Work together on Scratch projects simultaneously, seeing each other's changes live.</p>
+        </article>
+        <article class="feature" tabindex="0" role="region" aria-label="Project Sharing">
+          <h3>Project Sharing</h3>
+          <p>Easily share your projects with friends and classmates through unique project codes.</p>
+        </article>
+        <article class="feature" tabindex="0" role="region" aria-label="Version Control">
+          <h3>Version Control</h3>
+          <p>Keep track of changes and revert to previous versions of your projects.</p>
+        </article>
+      </div>
+
+      <!-- Settings: Dark mode & Color picker -->
+      <div class="settings" aria-label="Appearance settings">
+        <button id="dark-mode-toggle" aria-pressed="false" aria-label="Toggle dark mode">Enable Dark Mode</button>
+        <label for="color-picker" aria-label="Pick main color">
+          <input type="color" id="color-picker" value="#6ebbd8" />
+        </label>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Coded with love by <a href="https://github.com/SCLF-Xingshu" target="_blank" rel="noopener noreferrer">SCLF-Xingshu</a> | 2024
+    </p>
+  </footer>
+
+  <script>
+    // Dark mode toggle logic
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const colorPicker = document.getElementById('color-picker');
+    const root = document.documentElement;
+    const body = document.body;
+
+    // Load saved preferences if any
+    const savedDarkMode = localStorage.getItem('darkMode');
+    const savedColor = localStorage.getItem('mainColor');
+
+    if (savedDarkMode === 'true') {
+      body.classList.add('dark');
+      darkModeToggle.textContent = 'Disable Dark Mode';
+      darkModeToggle.setAttribute('aria-pressed', 'true');
+    }
+
+    if (savedColor) {
+      root.style.setProperty('--main-color', savedColor);
+      root.style.setProperty('--main-color-light', lightenColor(savedColor, 0.3));
+      root.style.setProperty('--main-color-dark', darkenColor(savedColor, 0.4));
+      colorPicker.value = savedColor;
+    }
+
+    darkModeToggle.addEventListener('click', () => {
+      const isDark = body.classList.toggle('dark');
+      darkModeToggle.textContent = isDark ? 'Disable Dark Mode' : 'Enable Dark Mode';
+      darkModeToggle.setAttribute('aria-pressed', isDark.toString());
+      localStorage.setItem('darkMode', isDark);
+    });
+
+    colorPicker.addEventListener('input', (e) => {
+      const color = e.target.value;
+      root.style.setProperty('--main-color', color);
+      root.style.setProperty('--main-color-light', lightenColor(color, 0.3));
+      root.style.setProperty('--main-color-dark', darkenColor(color, 0.4));
+      localStorage.setItem('mainColor', color);
+    });
+
+    // Helpers to lighten/darken colors (simple approx)
+    function lightenColor(color, amount) {
+      const {r,g,b} = hexToRgb(color);
+      const newR = Math.min(255, r + 255 * amount);
+      const newG = Math.min(255, g + 255 * amount);
+      const newB = Math.min(255, b + 255 * amount);
+      return rgbToHex(newR, newG, newB);
+    }
+    function darkenColor(color, amount) {
+      const {r,g,b} = hexToRgb(color);
+      const newR = Math.max(0, r - 255 * amount);
+      const newG = Math.max(0, g - 255 * amount);
+      const newB = Math.max(0, b - 255 * amount);
+      return rgbToHex(newR, newG, newB);
+    }
+    function hexToRgb(hex) {
+      let cleaned = hex.replace('#','');
+      if(cleaned.length === 3) {
+        cleaned = cleaned.split('').map(c => c+c).join('');
+      }
+      const num = parseInt(cleaned,16);
+      return {
+        r: (num >> 16) & 255,
+        g: (num >> 8) & 255,
+        b: num & 255
+      };
+    }
+    function rgbToHex(r,g,b) {
+      const hr = Math.round(r).toString(16).padStart(2,'0');
+      const hg = Math.round(g).toString(16).padStart(2,'0');
+      const hb = Math.round(b).toString(16).padStart(2,'0');
+      return `#${hr}${hg}${hb}`;
+    }
+  </script>
+</body>
+</html>
