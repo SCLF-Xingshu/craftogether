@@ -22,7 +22,7 @@ body.dark {
 
 body {
   margin: 0;
-  font-family: 'Gabarito', sans-serif;
+  font-family: 'Outfit', sans-serif;
   font-size: 16px;
   background: var(--background-gradient);
   color: var(--text-color);
@@ -421,3 +421,4 @@ input[type="color"]::-webkit-color-swatch {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
