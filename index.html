@@ -71,6 +71,20 @@
      <li style="color: white;"><a href="https://buymeacoffee.com/" target="_blank"><b>Buy Me A Coffee</b></a></li>
      <li style="color: white;"><a href="#top"><b>Return to top</b></a></li>
      <li style="color: white;"><a href="#Terms">Terms</a></li>
+     <div>Visitors: <span id="visitors">…</span></div>
+<script>
+(async function () {
+  const url = 'https://api.countapi.xyz/hit/sclf-xingshu.github.io/craftogether.y1l9f245x6';
+  try {
+    const resp = await fetch(url);
+    const data = await resp.json();
+    document.getElementById('visitors').textContent = data.value;
+  } catch (err) {
+    console.error('CountAPI error', err);
+    document.getElementById('visitors').textContent = 'n/a';
+  }
+})();
+</script>
     </ul>
    </nav>
   </footer>
