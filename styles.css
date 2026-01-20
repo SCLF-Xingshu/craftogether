@@ -126,6 +126,9 @@ main {
 
 main a {
   color: var(--main-color-dark);
+  text-decoration: none;
+  border-bottom: 2px solid var(--main-color-dark);
+  padding-bottom: 2px;
 }
 
 h1 {
@@ -425,6 +428,7 @@ input[type="color"]::-webkit-color-swatch {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
 
 
 
