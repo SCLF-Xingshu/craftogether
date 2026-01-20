@@ -124,6 +124,10 @@ main {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+main a {
+  color: #373d3b;
+}
+
 h1 {
   font-family: 'Cal Sans', sans-serif;
   font-weight: 700;
@@ -421,6 +425,7 @@ input[type="color"]::-webkit-color-swatch {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
 
 
 
