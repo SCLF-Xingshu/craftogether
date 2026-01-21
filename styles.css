@@ -455,19 +455,17 @@ details > summary::-webkit-details-marker {
 
 /* ===== SUMMARY AS BUTTON ===== */
 details.dropdown > summary {
-  cursor: pointer;
+ cursor: pointer;
   padding: 0.8rem 2rem;
-  border-radius: 25px;
-  background-color: var(--main-color-light);
-  color: #000;
   font-family: 'Outfit', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.2rem;
+  border-radius: 25px;
   border: none;
+  margin: 0 10px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
   box-shadow: 0 3px 6px rgb(0 0 0 / 0.15);
-  transition: transform 0.25s ease, background-color 0.25s ease;
   user-select: none;
-  text-align: center;
+  color: white;
 }
 
 /* Hover / focus */
@@ -546,6 +544,7 @@ details > summary {
 details > summary::-webkit-details-marker {
   display: none;
 }
+
 
 
 
