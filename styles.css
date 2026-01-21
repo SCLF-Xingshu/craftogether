@@ -169,16 +169,16 @@ button {
   color: white;
 }
 
-.btn-join {
+.btn-startfree {
   background-color: var(--main-color);
 }
 
-.btn-join:hover {
+.btn-startfree:hover {
   background-color: var(--main-color-dark);
   transform: scale(1.1);
 }
 
-.btn-join:active {
+.btn-startfree:active {
   background-color: #3d8db8;
 }
 
@@ -428,6 +428,7 @@ input[type="color"]::-webkit-color-swatch {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
 
 
 
