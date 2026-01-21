@@ -175,7 +175,6 @@ button {
 
 .btn-startfree:hover {
   background-color: var(--main-color-dark);
-  transform: scale(1.1);
 }
 
 .btn-startfree:active {
@@ -188,7 +187,6 @@ button {
 
 .btn-createproject:hover {
   background-color: #5cc65c;
-  transform: scale(1.1);
 }
 
 .btn-createproject:active {
@@ -201,7 +199,6 @@ button {
 
 .btn-trynosignup:hover {
   background-color: #6e6e6e;
-  transform: scale(1.1);
 }
 
 .btn-trynosignup:active {
@@ -441,6 +438,7 @@ input[type="color"]::-webkit-color-swatch {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
 
 
 
