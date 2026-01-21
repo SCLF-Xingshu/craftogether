@@ -472,7 +472,6 @@ details.dropdown > summary {
 details.dropdown > summary:hover,
 details.dropdown > summary:focus {
   background-color: var(--main-color);
-  transform: scale(1.05);
   outline: none;
 }
 
@@ -512,7 +511,6 @@ details[open] .dropdown-content {
   color: #222;
   text-decoration: none;
   font-family: 'Outfit', sans-serif;
-  font-weight: 500;
 }
 
 .dropdown-content a:hover,
@@ -544,6 +542,7 @@ details > summary {
 details > summary::-webkit-details-marker {
   display: none;
 }
+
 
 
 
