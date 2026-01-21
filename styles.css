@@ -193,15 +193,15 @@ button {
   background-color: #3da53d;
 }
 
-.btn-trynosignup {
+details.btn-trynosignup > summary {
   background-color: #9e9e9e;
 }
 
-.btn-trynosignup:hover {
+details.btn-trynosignup > summary:hover {
   background-color: #6e6e6e;
 }
 
-.btn-trynosignup:active {
+details.btn-trynosignup > summary:active {
   background-color: #424242;
 }
 
@@ -546,6 +546,7 @@ details > summary {
 details > summary::-webkit-details-marker {
   display: none;
 }
+
 
 
 
