@@ -523,6 +523,29 @@ details[open] .dropdown-content {
   outline: none;
 }
 
+/* Make summary behave like a button */
+details.dropdown > summary {
+  cursor: pointer;
+  padding: 0.8rem 2rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  border-radius: 25px;
+  border: none;
+  margin: 0 10px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 0.15);
+  user-select: none;
+  color: white;
+  display: inline-block;
+}
+
+/* Remove default marker */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
 
 
 
