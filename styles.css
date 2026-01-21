@@ -182,17 +182,30 @@ button {
   background-color: #3d8db8;
 }
 
-.btn-create {
+.btn-createproject {
   background-color: #6ed86e;
 }
 
-.btn-create:hover {
+.btn-createproject:hover {
   background-color: #5cc65c;
   transform: scale(1.1);
 }
 
-.btn-create:active {
+.btn-createproject:active {
   background-color: #3da53d;
+}
+
+.btn-trynosignup {
+  background-color: #9e9e9e;
+}
+
+.btn-trynosignup:hover {
+  background-color: #6e6e6e;
+  transform: scale(1.1);
+}
+
+.btn-trynosignup:active {
+  background-color: #424242;
 }
 
 .fullwidthhome1 {
@@ -428,6 +441,7 @@ input[type="color"]::-webkit-color-swatch {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
 
 
 
