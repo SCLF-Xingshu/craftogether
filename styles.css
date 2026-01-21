@@ -439,6 +439,89 @@ input[type="color"]::-webkit-color-swatch {
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
+/* ===== DROPDOWN BASE ===== */
+details.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Remove default triangle */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* ===== SUMMARY AS BUTTON ===== */
+details.dropdown > summary {
+  cursor: pointer;
+  padding: 0.8rem 2rem;
+  border-radius: 25px;
+  background-color: var(--main-color-light);
+  color: #000;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 0.15);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+  user-select: none;
+  text-align: center;
+}
+
+/* Hover / focus */
+details.dropdown > summary:hover,
+details.dropdown > summary:focus {
+  background-color: var(--main-color);
+  transform: scale(1.05);
+  outline: none;
+}
+
+/* Open state */
+details.dropdown[open] > summary {
+  background-color: var(--main-color);
+}
+
+/* ===== DROPDOWN PANEL ===== */
+.dropdown-content {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  min-width: 180px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.2);
+  padding: 0.4rem 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 1000;
+}
+
+/* Smooth open */
+details[open] .dropdown-content {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+/* ===== DROPDOWN LINKS ===== */
+.dropdown-content a {
+  display: block;
+  padding: 0.6rem 1.2rem;
+  color: #222;
+  text-decoration: none;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+}
+
+.dropdown-content a:hover,
+.dropdown-content a:focus {
+  background-color: #f0f0f0;
+  outline: none;
+}
 
 
 
