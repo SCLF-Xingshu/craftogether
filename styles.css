@@ -543,6 +543,20 @@ details > summary::-webkit-details-marker {
   display: none;
 }
 
+/* Dropdown container with sliding motion */
+details .dropdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(-10px); /* start slightly above */
+  transition: max-height 0.4s ease, transform 0.4s ease;
+}
+
+/* Open state: slide down */
+details[open] .dropdown-content {
+  max-height: 500px; /* big enough to show all links */
+  transform: translateY(0); /* slide into place */
+}
+
 
 
 
