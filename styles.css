@@ -557,6 +557,29 @@ details[open] .dropdown-content {
   transform: translateY(0); /* slide into place */
 }
 
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  transform: translateY(-12px);
+  transition: transform 0.25s ease;
+
+  /* keep it hidden without display:none */
+  pointer-events: none;
+}
+
+/* OPEN STATE */
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
 
 
 
