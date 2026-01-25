@@ -2,11 +2,12 @@
 Hi, welcome to Craftogether's *future* wiki !
 Craftogether will be a place to collaborate on coding projects in languages like Scratch or HTML.
 The work is in progress.
-Here's a loading bar (off-topic) :
+Here's a work-in-progress-o-meter :
 
-[///------------------------------------------------------------------------------]
-
- website design|adding the GUI|coding the servers for collab|final redesign
+ Website design : 40%
+ adding the GUI : 1%
+ coding servers : 0%
+ final redesign : 0%
 
  *As you see, I'm actually very far from the project's objective though, and I have to learn some coding languages like JS still ^^"*
 
