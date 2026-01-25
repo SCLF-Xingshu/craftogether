@@ -4,10 +4,10 @@ Craftogether will be a place to collaborate on coding projects in languages like
 The work is in progress.
 Here's a work-in-progress-o-meter :
 
- Website design : 40%
- adding the GUI : 1%
- coding servers : 0%
- final redesign : 0%
+ Website design : 40%<br>
+ Adding the GUI : 1%<br>
+ Coding servers : 0%<br>
+ Final redesign : 0%<br>
 
  *As you see, I'm actually very far from the project's objective though, and I have to learn some coding languages like JS still ^^"*
 
