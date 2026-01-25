@@ -1,0 +1,3 @@
+[submodule "scratch-gui"]
+	path = scratch-gui
+	url = https://github.com/SCLF-Xingshu/scratch-gui.git
