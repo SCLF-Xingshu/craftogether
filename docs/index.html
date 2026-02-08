@@ -11,6 +11,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Gabarito&family=Outfit&family=Cal+Sans&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://rbpepsagmqiexehsheid.supabase.co"
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJicGVwc2FnbXFpZXhlaHNoZWlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1NzE2MDcsImV4cCI6MjA4NjE0NzYwN30.Y3FB2Hkfze634vBqxe8G7w6O9YCnUdikNfwwzLcyKL0"
+
+    window.supabaseClient = supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    )
+  </script>
+
 </head>
 <body>
   <header>
