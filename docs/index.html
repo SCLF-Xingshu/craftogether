@@ -55,7 +55,7 @@
       <button class="btn-startfree">Start Free</button>
       <button class="btn-createproject">Join a project</button>
       <button id="login-github">Login with GitHub</button>
-      <button id="logout">Logout</button>
+      <button id="logout" style="display: none;">Logout</button>
       <details class="dropdown btn-trynosignup">
         <summary>Use without signup</summary>
         <div class="dropdown-content">
@@ -109,14 +109,13 @@
     )
     console.log("Supabase client created:", window.supabaseClient);
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
   const loginButton = document.getElementById('login-github');
   const logoutButton = document.getElementById('logout');
 
   // Login
   loginButton.addEventListener('click', async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
+    const { error } = await supabaseClient.auth.signInWithOAuth({
       provider: 'github',
     });
     if (error) console.error('Login error:', error.message);
@@ -124,14 +123,14 @@
 
   // Logout
   logoutButton.addEventListener('click', async () => {
-    const { error } = await supabase.auth.signOut();
+    const { error } = await supabaseClient.auth.signOut();
     if (error) console.error('Logout error:', error.message);
   });
 
   // Check session on page load
-  supabase.auth.getSession().then(({ data }) => {
-    if (data.session) {
-      console.log('User is logged in:', data.session.user);
+  supabaseClient.auth.getSession().then(({ data: { session } }) => {
+    if (session) {
+      console.log('User is logged in:', session.user);
       loginButton.style.display = 'none';
       logoutButton.style.display = 'inline-block';
     } else {
