@@ -42,3 +42,36 @@ yproject.observe(event => {
 // Mount Scratch GUI
 const gui = new ScratchGUI({ vm });
 document.getElementById('app').appendChild(gui.render());
+
+// Wait until Scratch GUI is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  // Scratch GUI exposes `window.vm` if you attach it
+  const vm = window.vm; // reference to Scratch VM from GUI
+
+  // Yjs setup
+  import * as Y from 'yjs';
+  import { WebsocketProvider } from 'y-websocket';
+
+  const ydoc = new Y.Doc();
+  const provider = new WebsocketProvider(
+    'wss://demos.yjs.dev',
+    'craftogether-my-first-project',
+    ydoc
+  );
+  const yproject = ydoc.getMap('scratchProject');
+
+  // Load existing project if any
+  if (yproject.has('data')) vm.loadProject(yproject.get('data'));
+
+  // Sync changes
+  vm.on('PROJECT_CHANGED', () => {
+    yproject.set('data', vm.toJSON());
+  });
+  yproject.observe(event => {
+    if (event.keysChanged.has('data')) {
+      const json = yproject.get('data');
+      vm.loadProject(json);
+    }
+  });
+});
+
