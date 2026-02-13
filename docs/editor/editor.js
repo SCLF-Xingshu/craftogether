@@ -1,43 +1,70 @@
 // editor.js
-document.addEventListener('DOMContentLoaded', () => {
-    // Wait for Scratch VM
-    const vm = window.vm;
-    if (!vm) {
-        console.error('Scratch VM not found. Make sure Scratch GUI is loaded first.');
-        return;
+document.addEventListener('DOMContentLoaded', async () => {
+  // --- Scratch VM ---
+  const vm = window.vm;
+  if (!vm) {
+    console.error('Scratch VM not found. Make sure Scratch GUI is loaded first.');
+    return;
+  }
+
+  // --- Project ID ---
+  const projectId = new URLSearchParams(location.search).get('project') || 'shared-scratch';
+
+  // --- Yjs document ---
+  const ydoc = new Y.Doc();
+  const yProject = ydoc.getMap('project'); // renamed for clarity
+
+  // --- Load backup from Supabase ---
+  const { data: projectData } = await supabase
+    .from('projects')
+    .select('yjs_update')
+    .eq('id', projectId)
+    .single();
+
+  if (projectData?.yjs_update) {
+    Y.applyUpdate(ydoc, projectData.yjs_update);
+  }
+
+  // --- Apply Yjs state to Scratch VM ---
+  if (yProject.has('data')) {
+    vm.loadProject(yProject.get('data'));
+  }
+
+  // --- Listen to VM changes and update Yjs ---
+  vm.on('PROJECT_CHANGED', () => {
+    yProject.set('data', vm.toJSON());
+  });
+
+  // --- Observe Yjs changes and apply to VM ---
+  yProject.observe(event => {
+    if (event.keysChanged.has('data')) {
+      const json = yProject.get('data');
+      vm.loadProject(json);
     }
+  });
 
-    // Create a Yjs document
-    const ydoc = new Y.Doc();
+  // --- Persist Yjs updates to Supabase ---
+  ydoc.on('update', async (update) => {
+    await supabase.from('projects')
+      .upsert({ id: projectId, yjs_update: update });
+  });
 
-    // Connect to a public Yjs room
-    const projectId = 'shared-scratch';
-    const provider = new Y.WebsocketProvider(
-        'wss://demos.yjs.dev',      // free public Yjs server
-        `craftogether-${projectId}`, // room name
-        ydoc
-    );
+  // --- Realtime subscription for Supabase ---
+  const channel = supabase.channel(`realtime-project-${projectId}`)
+    .on(
+      'postgres_changes',
+      {
+        event: 'UPDATE',
+        schema: 'public',
+        table: 'projects',
+        filter: `id=eq.${projectId}`
+      },
+      payload => {
+        const update = payload.new.yjs_update;
+        if (update) Y.applyUpdate(ydoc, update);
+      }
+    )
+    .subscribe();
 
-    // Shared project map
-    const yproject = ydoc.getMap('scratchProject');
-
-    // Load existing project if any
-    if (yproject.has('data')) {
-        vm.loadProject(yproject.get('data'));
-    }
-
-    // Sync local changes to Yjs
-    vm.on('PROJECT_CHANGED', () => {
-        yproject.set('data', vm.toJSON());
-    });
-
-    // Sync remote changes from Yjs
-    yproject.observe(event => {
-        if (event.keysChanged.has('data')) {
-            const json = yproject.get('data');
-            vm.loadProject(json);
-        }
-    });
-
-    console.log('✅ Real-time collaboration enabled!');
+  console.log(`Real-time collaboration enabled (Supabase) for project: ${projectId}`);
 });
